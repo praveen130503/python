@@ -1,0 +1,48 @@
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, value):
+        self.stack.append(value)
+
+    def pop(self):
+        if self.is_empty():
+            raise IndexError("Cannot pop from an empty stack")
+        return self.stack.pop()
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+
+# Values
+values_to_push = [1, 2, 3]
+
+# Test Cases
+def test_stack():
+    stack = Stack()
+
+    # Push elements onto the stack
+    for value in values_to_push:
+        stack.push(value)
+
+    # Pop elements from the stack in reverse order
+    popped_values = []
+    while not stack.is_empty():
+        popped_values.append(stack.pop())
+
+    # Verify the popped values are in reverse order
+    assert popped_values == list(reversed(values_to_push)), "Push and pop test failed"
+
+    # Pop from an empty stack (error handling)
+    try:
+        stack.pop()
+    except IndexError as e:
+        assert str(e) == "Cannot pop from an empty stack", "Error handling test failed"
+    else:
+        raise AssertionError("Error handling test failed: Expected IndexError")
+
+    print("All test cases passed successfully.")
+
+
+if __name__ == "__main__":
+    test_stack()
