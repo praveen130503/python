@@ -1,0 +1,26 @@
+def remove_element(nums, val):
+    # Use two pointers approach to remove elements
+    left = 0
+    right = 0
+    
+    while right < len(nums):
+        if nums[right] != val:
+           
+            nums[left] = nums[right]
+            left += 1
+            print(left)
+        right += 1
+    
+    # Trim the list to remove the extra elements
+    del nums[left:]
+    
+    return left
+
+
+# Example usage:
+nums = [3, 2, 2, 3]
+val = 3
+
+print("Original nums:", nums)
+removed_count = remove_element(nums, val)
+print("Updated nums:", nums[:removed_count], "_, _" * (len(nums) - removed_count))
