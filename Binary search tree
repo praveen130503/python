@@ -1,0 +1,52 @@
+class treenode:
+    def __init__(self,value):
+        self.value=value
+        self.left=None
+        self.right=None
+class tree:
+    def __init__(self):
+        self.root=None
+    def Add(self,value):
+        new_node=treenode(value)
+        if self.root is None:
+            self.root=new_node
+        else:
+            temp=self.root
+            parentnode=None
+            flag=True
+            while temp is not None:
+                if temp.value<value:
+                    parentnode=temp
+                    temp=temp.right
+                    flag=False
+                else:
+                    parentnode=temp
+                    temp=temp.left
+                    flag=True
+            if flag==True:
+                parentnode.left=new_node
+            else:
+                parentnode.right=new_node
+    def inorder(self,root):
+            if root:
+                self.inorder(root.left)
+                print(root.value)
+                self.inorder(root.right)
+    def preorder(self,root):
+            if root:
+                 print(root.value)
+                 self.preorder(root.left)
+                 self.preorder(root.right)
+    def postorder(self,root):
+            if root:
+                 self.postorder(root.left)
+                 self.postorder(root.right)
+                 print(root.value)
+tree1=tree()
+tree1.Add(5)
+tree1.Add(3)
+tree1.Add(8)
+tree1.inorder(tree1.root)
+tree1.preorder(tree1.root)
+tree1.postorder(tree1.root)
+
